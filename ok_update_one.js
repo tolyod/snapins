@@ -1,1 +1,23 @@
-javascript:function shuffleArray(t){for(var a=t.length-1;a>0;a--){var e=Math.floor(Math.random()*(a+1)),r=t[a];t[a]=t[e],t[e]=r}return t}function makeShot(){var t=$("#movie-title").val().split("!!!!!"),a=shuffleArray(JSON.parse(localStorage.getItem("oktag_names"))).join(" "),e=t[0]+"!!!!! "+a,r=e.substr(0,280),o=shuffleArray(localStorage.getItem("oktag_keywords").split(", ")),l=o.join(", ").substr(2,280);$("#movie-title").val(r),$("input[name='st.ve.tags']").val(l).submit()}makeShot();
+javascript:function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function makeShot() {
+  const separator = ' !!! ';
+  const tags = shuffle(JSON.parse(localStorage.getItem('tags')));
+  const nameInput = document.getElementById('movie-title');
+  const tagsInput = document.querySelector('input[name="st.ve.tags"]');
+  const submitButton = document.querySelector('input[type="submit"].button-pro.js-submit-annotations-form');
+  const curMovieName = nameInput.value.split(separator)[0];
+  const nameValue = `${curMovieName}${separator}${tags.slice(1,5).join(' ')}`.slice(0, 150);
+  const tagsValue = shuffle(tags).slice(0,7).join(',');
+  
+  nameInput.value = nameValue
+  tagsInput.value = tagsValue;
+  submitButton.click();
+}
+makeShot();
