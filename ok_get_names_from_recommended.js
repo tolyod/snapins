@@ -16,6 +16,7 @@ function saveTags() {
   const uniqNames = new Set(names);
   const sourceData = [...uniqNames];
   shuffle(sourceData);
+  alert(`${sourceData.length} names added`);
   localStorage.setItem("tags", JSON.stringify(sourceData));
 }
 saveTags();
