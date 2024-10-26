@@ -16,7 +16,7 @@ function makeShot() {
   const nameValue = `${curMovieName}${separator}${tags.slice(1,5).join(' ')}`.slice(0, 150);
   const tagsValue = shuffle(tags).slice(0,7).join(',');
   
-  nameInput.value = nameValue
+  nameInput.value = nameValue;
   tagsInput.value = tagsValue;
   submitButton.click();
 }
